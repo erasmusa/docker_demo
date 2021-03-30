@@ -1,0 +1,24 @@
+{
+  "name":"demo/tsootptm",
+  "description": "",
+    "repositories":[
+    { "type": "composer", "url": "https://wpackagist.org" }
+  ],
+  "extra": {
+    "installer-paths": {
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "minimum-stability":"stable",
+  "require":{
+    "php": ">=7.1",
+    "composer/installers": "v1.9.0",
+    "aws/aws-sdk-php": "3.99.0",
+    "oscarotero/env": "1.2.0",
+    "roots/wordpress": "5.5.3",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.0.0"
+  }
+}
