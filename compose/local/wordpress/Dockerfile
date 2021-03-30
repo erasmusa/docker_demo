@@ -11,7 +11,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 EXPOSE 9000
 
 FROM base as local
-COPY ./compose/wordpress/entrypoint.sh /entrypoint.sh
+COPY ./compose/local/wordpress/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 #FROM base as static

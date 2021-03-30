@@ -2,6 +2,9 @@
 
 version: '3.4'
 
+volumes:
+    demo_db: {}
+
 services:
   wordpress:
     build:
@@ -11,7 +14,7 @@ services:
     image: img_demo_wordpress
     container_name: ctr_demo_wordpress
     env_file:
-      - ./compose/local/.env
+      - ./compose/.env
     expose:
       - '9000'
     volumes:
@@ -30,7 +33,7 @@ services:
     image: nginx:latest
     container_name: ctr_demo_nginx
     env_file:
-      - ./compose/local/.env
+      - ./compose/.env
     ports:
       - '80:80'
     networks:
@@ -48,21 +51,19 @@ services:
     networks:
       - app-tier
 
-   db:
-      container_name: ctr_demo_db
-      image: mysql:5.7
-      restart: on-failure
-      env_file:
-        - ./compose/local/.env
-      expose:
-        - '3306'
-      volumes:
-        - demo_db:/var/lib/mysql
-        - ./compose/local/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf:ro
+  db:
+    container_name: ctr_demo_db
+    image: mysql:5.7
+    restart: on-failure
+    env_file:
+      - ./compose/.env
+    expose:
+      - '3306'
+    volumes:
+      - demo_db:/var/lib/mysql
+      - ./compose/local/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf:ro
 
 networks:
   app-tier:
     driver: bridge
 
-volumes:
-    demo_db: {}
